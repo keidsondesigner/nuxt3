@@ -1,7 +1,6 @@
 <template>
-  <Header />
   <div>
-    Página inicial de index
+    <h1>Header</h1>
   </div>
 </template>
 

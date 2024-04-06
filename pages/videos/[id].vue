@@ -2,6 +2,8 @@
   <div>
     video por id: {{ idParams }}
   </div>
+  <VideoDetalhes />
+  <VideoControlePlay />
 </template>
 
 <script setup lang="ts">
