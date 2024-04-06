@@ -10,6 +10,8 @@
 // define o estilo de layout, que vai ser mostrado nesta página;
 definePageMeta({
   layout: "exibicao",
+  // faço a verificação com middleware, antes de entrar nesta página,
+  middleware: ["video", "auth"],
 })
 const route = useRoute();
 
