@@ -7,6 +7,10 @@
 </template>
 
 <script setup lang="ts">
+// define o estilo de layout, que vai ser mostrado nesta página;
+definePageMeta({
+  layout: "exibicao",
+})
 const route = useRoute();
 
 const idParams = computed(() => route.params.id);
