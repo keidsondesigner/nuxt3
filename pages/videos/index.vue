@@ -1,7 +1,9 @@
 <template>
   <div>
     videos
-    <NuxtLink to="/videos/favoritos">Favoritos</NuxtLink>
+    <NuxtLink to="/videos/favoritos">
+      Favoritos ({{ getFavoritos.length }})
+    </NuxtLink>
     <div class="videos">
       <div v-for="video in videos" :key="video.id">
         <h2>{{ video.descricao }}</h2>
@@ -31,7 +33,9 @@
 <script setup lang="ts">
 import type { Video } from '@/interfaces/video.interface';
 
-const { adicionarFavorito } = useVideoStore();
+const { $toast } = useNuxtApp();
+
+const { adicionarFavorito, getFavoritos } = useVideoStore();
 
 const videos: Video[] = [
   {
@@ -63,6 +67,10 @@ const videos: Video[] = [
 const converterDataBrasil = (dataAtual: string) => {
   return new Date(dataAtual).toLocaleDateString("pt-BR");
 }
+
+onMounted(() => {
+  $toast.success("Videos carregados");
+})
 </script>
 <style scoped>
 .videos {

@@ -14,7 +14,7 @@
             title="YouTube video player"
             frameborder="0"
           />
-          <button @click="videoStore.deletarFavorito(video.id)">
+          <button @click="removeFavorito(video.id, video.descricao)">
             Remover Favorito
           </button>
         </div>
@@ -24,7 +24,15 @@
 </template>
 
 <script setup lang="ts">
+import type { Video } from '~/interfaces/video.interface';
+
 const videoStore = useVideoStore();
 const { favoritos } = storeToRefs(videoStore);
 
+const { $toast }  = useNuxtApp();
+
+const removeFavorito = (id: number, descricao: string) => {
+  videoStore.deletarFavorito(id);
+  $toast.error(`${descricao} - foi removido!`);
+}
 </script>
