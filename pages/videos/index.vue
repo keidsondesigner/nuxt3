@@ -1,8 +1,16 @@
 <template>
   <div>
-    videos
+    <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      Lista de vídeos
+    </h1>
     <NuxtLink to="/videos/favoritos">
-      Favoritos ({{ getFavoritos.length }})
+      <Badge class="gap-2">
+        Meus favoritos
+        <IconsInbox />
+        <span>
+          {{ getFavoritos.length }}
+        </span>
+      </Badge>
     </NuxtLink>
     <div class="videos">
       <div v-for="video in videos" :key="video.id">
