@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1 class="text-4xl text-center mb-4">tituloFavoritos</h1>
+    <NuxtLink to="/videos">
+      Voltar para todos os Vídeos
+    </NuxtLink>
     <div>
       <div
         class="grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-4"

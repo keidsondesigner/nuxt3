@@ -7,15 +7,12 @@
       <Badge class="gap-2">
         Meus favoritos
         <Inbox />
-        <span>
-          {{ getFavoritos.length }}
-        </span>
+        {{ videosFavoritos.length }}
       </Badge>
     </NuxtLink>
     <div class="videos">
       <div v-for="video in videos" :key="video.id">
         <h2>{{ video.descricao }}</h2>
-        <p>{{ converterDataBrasil(video.data_postagem) }}</p>
         <iframe 
           width="550"
           height="400"
@@ -26,12 +23,23 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
         />
-        <div>
-          <button
+        <div class="flex gap-4 mt-3">
+          <Button
+            class="gap-2"
             @click="adicionarFavorito(video)"
           >
-            Add favoritos
-          </button>
+            Favoritos
+            <Plus />
+          </Button>
+          <NuxtLink :to="{ name: 'videos-id', params: { id: video.id }}">
+            <Button
+              class="gap-2"
+              variant="secondary"
+            >
+              Detalhes
+              <ChevronRight />
+            </Button>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -40,11 +48,12 @@
 
 <script setup lang="ts">
 import type { Video } from '@/interfaces/video.interface';
-import { Inbox } from 'lucide-vue-next';
+import { Inbox, ChevronRight, Plus } from 'lucide-vue-next';
 
 const { $toast } = useNuxtApp();
 
 const { adicionarFavorito, getFavoritos } = useVideoStore();
+const videosFavoritos = ref<Video[]>([]);
 
 const videos: Video[] = [
   {
@@ -77,20 +86,22 @@ const converterDataBrasil = (dataAtual: string) => {
   return new Date(dataAtual).toLocaleDateString("pt-BR");
 }
 
-onMounted(() => {
+onMounted(async () => {
+  videosFavoritos.value = await getFavoritos;
   $toast.success("Videos carregados");
 })
 </script>
 <style scoped>
+
+Button {
+  display: flex;
+}
+
 .videos {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-.videos button {
-  display: inline-block;
 }
 </style>
