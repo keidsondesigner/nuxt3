@@ -4,6 +4,9 @@ export const useVideoStore = defineStore('favoritos', {
   state: ()  => ({
     favoritos: ref<Video[]>([])
   }),
+  persist: {
+    storage: persistedState.localStorage,
+  },
   getters: {
     getFavoritos(state: { favoritos: Video[] }) {
       return state.favoritos

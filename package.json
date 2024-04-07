@@ -19,5 +19,8 @@
   },
   "overrides": {
     "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0"
   }
 }
