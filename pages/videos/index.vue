@@ -6,7 +6,7 @@
     <NuxtLink to="/videos/favoritos">
       <Badge class="gap-2">
         Meus favoritos
-        <IconsInbox />
+        <Inbox />
         <span>
           {{ getFavoritos.length }}
         </span>
@@ -40,6 +40,7 @@
 
 <script setup lang="ts">
 import type { Video } from '@/interfaces/video.interface';
+import { Inbox } from 'lucide-vue-next';
 
 const { $toast } = useNuxtApp();
 
