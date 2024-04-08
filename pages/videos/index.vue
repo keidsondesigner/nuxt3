@@ -8,7 +8,7 @@
         <Button class="gap-2 relative">
           Meus favoritos
           <Inbox />
-          <span class="text-red-400 absolute right-2 bottom-5 bg-slate-800 h-5 w-5 rounded-full">
+          <span v-if="videosFavoritos.length > 0" class="text-red-400 absolute right-2 bottom-5 bg-slate-800 h-5 w-5 rounded-full">
             {{ videosFavoritos.length }}
           </span>
         </Button>
