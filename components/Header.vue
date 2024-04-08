@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between p-4 bg-gray-900 text-white">
+  <header class="flex items-center justify-between p-4 bg-card text-white">
     <!-- Logo -->
     <div class="text-xl font-bold flex">
       <svg
@@ -46,10 +46,7 @@
       >
         Vídeos
       </NuxtLink>
-      <NuxtLink
-        class="hover:text-green-400 pr-2 pl-2"
-        to="/videos/favoritos"
-      >
+      <NuxtLink class="hover:text-green-400 pr-2 pl-2" to="/videos/favoritos">
         Favoritos
       </NuxtLink>
     </nav>
@@ -57,18 +54,18 @@
     <div class="flex items-center space-x-4">
       <div class="relative">
         <!-- Language Dropdown -->
-        <form class="max-w-sm mx-auto">
-          <select
-            id="countries"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Escolha uma linguagem</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
-          </select>
-        </form>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Linguagens" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Selecione a linguagem</SelectLabel>
+              <SelectItem value="br"> BR </SelectItem>
+              <SelectItem value="en"> EN </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
     </div>
   </header>

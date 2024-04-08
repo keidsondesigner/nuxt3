@@ -1,46 +1,50 @@
 <template>
-  <div>
-    <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-      Lista de vídeos
-    </h1>
-    <NuxtLink to="/videos/favoritos">
-      <Badge class="gap-2">
-        Meus favoritos
-        <Inbox />
-        {{ videosFavoritos.length }}
-      </Badge>
-    </NuxtLink>
-    <div class="videos">
-      <div v-for="video in videos" :key="video.id">
-        <h2>{{ video.descricao }}</h2>
-        <iframe 
-          width="550"
-          height="400"
-          :src="video.url"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        />
-        <div class="flex gap-4 mt-3">
-          <Button
-            class="gap-2"
-            @click="adicionarFavorito(video)"
-          >
-            Favoritos
-            <Plus />
-          </Button>
-          <NuxtLink :to="{ name: 'videos-id', params: { id: video.id }}">
+  <div class="conatiner-principal m-8">
+    <div class="flex justify-between mb-8 items-end">
+      <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        Lista de vídeos
+      </h1>
+      <NuxtLink to="/videos/favoritos">
+        <Button class="gap-2">
+          Meus favoritos
+          <Inbox />
+          {{ videosFavoritos.length }}
+        </Button>
+      </NuxtLink>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center justify-center gap-4">
+      <div
+        class="w-full flex flex-col items-center p-5 frounded-xl border bg-card text-card-foreground shadow"
+        v-for="video in videos" :key="video.id"
+        >
+          <h2 class="text-1xl font-bold mb-2">{{ video.descricao }}</h2>
+          <iframe 
+            class="w-full aspect-video rounded"
+            :src="video.url"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          />
+          <div class="w-full flex justify-between gap-4 mt-3 ">
             <Button
               class="gap-2"
-              variant="secondary"
+              @click="adicionarFavorito(video)"
             >
-              Detalhes
-              <ChevronRight />
+              Favoritos
+              <Plus />
             </Button>
-          </NuxtLink>
-        </div>
+            <NuxtLink :to="{ name: 'videos-id', params: { id: video.id }}">
+              <Button
+                class="gap-2"
+                variant="secondary"
+              >
+                Detalhes
+                <ChevronRight />
+              </Button>
+            </NuxtLink>
+          </div>
       </div>
     </div>
   </div>
@@ -70,12 +74,24 @@ const videos: Video[] = [
   },
   {
     id: 3,
-    descricao: "08 - UseState & Pinia (Ger de Estado) - Nuxt 3",
+    descricao: "08 - UseState & Pinia - Nuxt 3",
     url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
     data_postagem: "2023-10-25"
   },
   {
     id: 4,
+    descricao: "12 - Server (Backend) - Nuxt 3",
+    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
+    data_postagem: "2023-10-30"
+  },
+  {
+    id: 5,
+    descricao: "12 - Server (Backend) - Nuxt 3",
+    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
+    data_postagem: "2023-10-30"
+  },
+  {
+    id: 6,
     descricao: "12 - Server (Backend) - Nuxt 3",
     url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
     data_postagem: "2023-10-30"

@@ -7,6 +7,7 @@ import "vue3-toastify/dist/index.css";
 
 export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.vueApp.use(Vue3Toastify, {
+    theme: "dark",
     autoClose: 2000,
   } as ToastContainerOptions);
 
