@@ -33,12 +33,25 @@
       </svg>
     </div>
     <!-- Navigation Links -->
-    <nav class="space-x-4">
-      <a href="#" class="hover:text-blue-500">Home</a>
-      <a href="#" class="hover:text-blue-500">Company</a>
-      <a href="#" class="hover:text-blue-500">Features</a>
-      <a href="#" class="hover:text-blue-500">Team</a>
-      <a href="#" class="hover:text-blue-500">Contact</a>
+    <nav class="">
+      <NuxtLink
+        class="hover:text-green-400 border-r-2 border-slate-400/25 pr-2 pl-2"
+        to="/"
+      >
+        Home
+      </NuxtLink>
+      <NuxtLink
+        class="hover:text-green-400 border-r-2 border-slate-400/25 pr-2 pl-2"
+        to="/videos"
+      >
+        Vídeos
+      </NuxtLink>
+      <NuxtLink
+        class="hover:text-green-400 pr-2 pl-2"
+        to="/videos/favoritos"
+      >
+        Favoritos
+      </NuxtLink>
     </nav>
     <!-- Search Bar and Language Selection -->
     <div class="flex items-center space-x-4">

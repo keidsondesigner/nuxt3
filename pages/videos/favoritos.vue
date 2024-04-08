@@ -1,7 +1,13 @@
 <template>
   <div>
     <NuxtLink to="/videos">
-      Voltar para todos os Vídeos
+      <Button
+        class="gap-2"
+        variant="secondary"
+      >
+        Voltar para vídeos
+        <ChevronLeft />
+      </Button>
     </NuxtLink>
     <div>
       <div
@@ -26,6 +32,7 @@
 </template>
 
 <script setup lang="ts">
+import { ChevronLeft} from 'lucide-vue-next';
 import type { Video } from '~/interfaces/video.interface';
 
 const videoStore = useVideoStore();

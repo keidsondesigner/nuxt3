@@ -1,6 +1,6 @@
 <template>
   <div>
-    Layout Padrão
+    <Header />
     <slot></slot>
     Rodapé Padrão
   </div>
