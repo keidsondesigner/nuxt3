@@ -20,24 +20,30 @@
         <div 
           class="w-full flex flex-col items-center p-5 frounded-xl border bg-card text-card-foreground shadow"
           v-for="video in favoritos" :key="video.id">
-          {{ video.descricao }}
-
+          <h2 class="text-1xl font-bold mb-2">{{ video.descricao }}</h2>
           <iframe
-            class="h-48 w-full"
+            class="w-full aspect-video rounded"
             :src="video.url"
             title="YouTube video player"
             frameborder="0"
           />
-          <button @click="removeFavorito(video.id, video.descricao)">
-            Remover Favorito
-          </button>
+          <div class="w-full flex justify-between gap-4 mt-3 ">
+            <Button
+              class="gap-2"
+              variant="secondary"
+              @click="removeFavorito(video.id, video.descricao)"
+            >
+              Remover
+              <X class="text-red-400"/>
+            </Button>
+          </div>
         </div>
       </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ChevronLeft} from 'lucide-vue-next';
+import { ChevronLeft, X } from 'lucide-vue-next';
 import type { Video } from '~/interfaces/video.interface';
 
 const videoStore = useVideoStore();

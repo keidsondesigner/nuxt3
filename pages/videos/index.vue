@@ -5,10 +5,12 @@
         Lista de vídeos
       </h1>
       <NuxtLink to="/videos/favoritos">
-        <Button class="gap-2">
+        <Button class="gap-2 relative">
           Meus favoritos
           <Inbox />
-          {{ videosFavoritos.length }}
+          <span class="text-red-400 absolute right-2 bottom-5 bg-slate-800 h-5 w-5 rounded-full">
+            {{ videosFavoritos.length }}
+          </span>
         </Button>
       </NuxtLink>
     </div>
