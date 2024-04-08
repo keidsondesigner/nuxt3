@@ -32,7 +32,7 @@
           <div class="w-full flex justify-between gap-4 mt-3 ">
             <Button
               class="gap-2"
-              @click="adicionarFavorito(video)"
+              @click="addFavorito(video)"
             >
               Favoritos
               <Plus />
@@ -100,8 +100,9 @@ const videos: Video[] = [
   }
 ]
 
-const converterDataBrasil = (dataAtual: string) => {
-  return new Date(dataAtual).toLocaleDateString("pt-BR");
+const addFavorito = (video: Video) => {
+  adicionarFavorito(video)
+  $toast.success(`${video.descricao} - foi adicionado aos favoritos`);
 }
 
 onMounted(async () => {
