@@ -7,4 +7,6 @@ router.get('/videos/:id', defineEventHandler(videoController.buscaVideoPorId));
 
 router.post('/videos', defineEventHandler(videoController.adicionaVideo));
 
+router.put('/videos/:id', defineEventHandler(videoController.atualizaVideo));
+
 export default useBase("/api/v1", router.handler);

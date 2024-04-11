@@ -38,3 +38,23 @@ export const adicionaVideo = async (event: H3Event) => {
     })
   }
 }
+
+// PUT
+
+export const atualizaVideo = async (event: H3Event) => {
+  try {
+    const body = await readBody(event)
+
+    const resquestId = (await event.context.params?.id) as string
+    await client.query(
+      "UPDATE videos SET descricao = $1, url = $2, data_postagem = CURRENT_DATE WHERE id = $3",
+      [body.descricao, body.url, resquestId]
+    );
+    return "Vídeo atualizado com sucesso!"
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      name: 'Erro ao atualizar o video',
+    })
+  }
+}
