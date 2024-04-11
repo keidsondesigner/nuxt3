@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@vee-validate/zod": "^4.12.6",
+    "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-vue-next": "^0.365.0",
@@ -20,9 +22,11 @@
     "radix-vue": "^1.6.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vue3-toastify": "^0.2.1"
+    "vue3-toastify": "^0.2.1",
+    "zod": "^3.22.4"
   },
   "overrides": {
     "vue": "^3.4.21"

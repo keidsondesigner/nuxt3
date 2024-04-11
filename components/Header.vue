@@ -46,8 +46,11 @@
       >
         Vídeos
       </NuxtLink>
-      <NuxtLink class="hover:text-green-400 pr-2 pl-2" to="/videos/favoritos">
+      <NuxtLink class="hover:text-green-400 border-r-2 border-slate-400/25 pr-2 pl-2">
         Favoritos
+      </NuxtLink>
+      <NuxtLink class="hover:text-green-400 pr-2 pl-2" to="/videos/adicionar">
+        Adicionar
       </NuxtLink>
     </nav>
     <!-- Search Bar and Language Selection -->
