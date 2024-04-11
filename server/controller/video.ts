@@ -30,7 +30,7 @@ export const adicionaVideo = async (event: H3Event) => {
       'INSERT INTO videos (descricao, url, data_postagem) VALUES ($1, $2, CURRENT_DATE)',
       [body.descricao, body.url]
     );
-    return "Vídeo adicionado com sucesso!"
+    return "Vídeo adicionado com sucesso!";
   } catch (error) {
     throw createError({
       statusCode: 500,
@@ -55,6 +55,24 @@ export const atualizaVideo = async (event: H3Event) => {
     throw createError({
       statusCode: 500,
       name: 'Erro ao atualizar o video',
+    })
+  }
+}
+
+// DELETE
+
+export const deletarVideo = async (event: H3Event) => {
+  try {
+    const resquestId = (await event.context.params?.id) as string
+    const resultado = await client.query(
+      "DELETE FROM videos WHERE id = $1", [resquestId]
+    );
+    
+    return "Vídeo deletado com sucesso!";
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      name: 'Erro ao deletar o video',
     })
   }
 }
