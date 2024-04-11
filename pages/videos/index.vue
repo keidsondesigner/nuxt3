@@ -58,47 +58,15 @@ import { Inbox, ChevronRight, Plus } from 'lucide-vue-next';
 
 const { $toast } = useNuxtApp();
 
+const { data: videos, error } = await useFetch("/api/v1/videos");
+
+if (error.value) {
+  $toast.error("Erro ao carregar os videos");
+}
+
 const { adicionarFavorito, getFavoritos } = useVideoStore();
 const videosFavoritos = ref<Video[]>([]);
 
-const videos: Video[] = [
-  {
-    id: 1,
-    descricao: "06 - Middleware - Nuxt 3",
-    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
-    data_postagem: "2023-10-15"
-  },
-  {
-    id: 2,
-    descricao: "07 - Composables - Nuxt 3",
-    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
-    data_postagem: "2023-10-20"
-  },
-  {
-    id: 3,
-    descricao: "08 - UseState & Pinia - Nuxt 3",
-    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
-    data_postagem: "2023-10-25"
-  },
-  {
-    id: 4,
-    descricao: "12 - Server (Backend) - Nuxt 3",
-    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
-    data_postagem: "2023-10-30"
-  },
-  {
-    id: 5,
-    descricao: "12 - Server (Backend) - Nuxt 3",
-    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
-    data_postagem: "2023-10-30"
-  },
-  {
-    id: 6,
-    descricao: "12 - Server (Backend) - Nuxt 3",
-    url: "https://www.youtube.com/embed/d-4fyzA2ZC8?si=MvJ-16yYX3h_832_",
-    data_postagem: "2023-10-30"
-  }
-]
 
 const addFavorito = (video: Video) => {
   adicionarFavorito(video)
