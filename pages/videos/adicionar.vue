@@ -1,4 +1,53 @@
+<template>
+  <div class="conatiner-principal m-8">
+    <div class="flex justify-between mb-8 items-end">
+      <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        Adicionar vídeo
+      </h1>
+      <NuxtLink to="/videos">
+        <Button
+          class="gap-2"
+          variant="secondary"
+        >
+          Voltar
+          <ChevronLeft />
+        </Button>
+      </NuxtLink>
+    </div>
+    <form
+      class="max-w-sm mx-auto"
+      @submit="onSubmit"
+    >
+      <FormField v-slot="{ componentField }" name="descricao">
+        <FormItem>
+          <FormLabel>Descrição</FormLabel>
+          <FormControl>
+            <Input type="text" placeholder="Digite a descricão" v-bind="componentField" />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <FormField v-slot="{ componentField }" name="url">
+        <FormItem>
+          <FormLabel>Url</FormLabel>
+          <FormControl>
+            <Input type="text" placeholder="Digite uma url" v-bind="componentField" />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <Button
+        class="mt-4"
+        type="submit"
+      >
+        Enviar
+      </Button>
+    </form>
+  </div>
+</template>
+
 <script setup lang="ts">
+import { ChevronLeft } from 'lucide-vue-next';
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
@@ -6,7 +55,6 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,7 +63,8 @@ import {
 import { Input } from '@/components/ui/input'
 
 const formSchema = toTypedSchema(z.object({
-  username: z.string().min(2).max(50),
+  descricao: z.string().min(2),
+  url: z.string().min(2),
 }))
 
 const form = useForm({
@@ -23,26 +72,6 @@ const form = useForm({
 })
 
 const onSubmit = form.handleSubmit((values) => {
-  console.log('Form submitted!', values)
+  console.log('Form enviado!', values)
 })
 </script>
-
-<template>
-  <form @submit="onSubmit">
-    <FormField v-slot="{ componentField }" name="username">
-      <FormItem>
-        <FormLabel>Username</FormLabel>
-        <FormControl>
-          <Input type="text" placeholder="shadcn" v-bind="componentField" />
-        </FormControl>
-        <FormDescription>
-          This is your public display name.
-        </FormDescription>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
-  </form>
-</template>
