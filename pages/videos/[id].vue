@@ -116,9 +116,12 @@ if(error.value) {
   $toast.error("Erro ao carregar o vídeo");
 }
 
+const { adicionarFavorito } = useVideoStore();
 
+// Adicionar o video aos favoritos no store + LocalStorage
 function addFavorito(video: Video) {
-  console.log(video)
+  adicionarFavorito(video)
+  $toast.success(`${video.descricao} - foi adicionado aos favoritos`);
 }
 
 function editarFavorito(video: Video) {
