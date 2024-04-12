@@ -18,7 +18,7 @@
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center justify-center gap-4"
       >
         <div 
-          class="w-full flex flex-col items-center p-5 frounded-xl border bg-card text-card-foreground shadow"
+          class="w-full flex flex-col items-center p-5 rounded-xl border bg-card text-card-foreground shadow"
           v-for="video in favoritos" :key="video.id">
           <h2 class="text-1xl font-bold mb-2">{{ video.descricao }}</h2>
           <iframe

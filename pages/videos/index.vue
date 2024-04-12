@@ -16,7 +16,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center justify-center gap-4">
       <div
-        class="w-full flex flex-col items-center p-5 frounded-xl border bg-card text-card-foreground shadow"
+        class="w-full flex flex-col items-center p-5 rounded-xl border bg-card text-card-foreground shadow"
         v-for="video in videos" :key="video.id"
         >
           <h2 class="text-1xl font-bold mb-2">{{ video.descricao }}</h2>
@@ -43,7 +43,7 @@
                 variant="secondary"
               >
                 Detalhes
-                <ChevronRight />
+                <Eye />
               </Button>
             </NuxtLink>
           </div>
@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import type { Video } from '@/interfaces/video.interface';
-import { Inbox, ChevronRight, Plus } from 'lucide-vue-next';
+import { Inbox, Eye, Plus } from 'lucide-vue-next';
 
 const { $toast } = useNuxtApp();
 
@@ -75,7 +75,6 @@ const addFavorito = (video: Video) => {
 
 onMounted(async () => {
   videosFavoritos.value = await getFavoritos;
-  $toast.success("Videos carregados");
 })
 </script>
 <style scoped>
