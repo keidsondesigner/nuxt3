@@ -22,7 +22,7 @@
           @click="excluirVideo"
         >
           Excluír
-          <SquarePen />
+          <X />
         </Button>
         <DialogTrigger as-child>
           <Button
@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { Plus, SquarePen } from 'lucide-vue-next';
+import { Plus, SquarePen, X } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -140,22 +140,37 @@ const stateForm = reactive({
   url: "",
 });
 
-// Adicionar o video aos favoritos no store + LocalStorage
-function addFavorito(video: Video) {
-  adicionarFavorito(video)
-  $toast.success(`${video.descricao} - foi adicionado aos favoritos`);
-}
-
-function excluirVideo() {
-  console.log("excluir")
-}
-
+// Função ao ser clicada para abrir o modal, 
+// preenchendo os inputs com os dados do video atual
 function abrirModal() {
   stateForm.descricao = video.value.descricao;
   stateForm.url = video.value.url;
   stateForm.id = video.value.id;
 };
 
+// Adicionar o video aos favoritos no store + LocalStorage
+function addFavorito(video: Video) {
+  adicionarFavorito(video)
+  $toast.success(`${video.descricao} - foi adicionado aos favoritos`);
+}
+
+// Excluir o video
+async function excluirVideo() {
+  try {
+    await $fetch(`/api/v1/videos/${route.params.id}`, {
+      method: "DELETE",
+    });
+    $toast.success("Video excluído com sucesso!");
+    setTimeout(() => {
+      router.push("/videos");
+    }, 2000)
+  } catch (error) {
+    $toast.error("Erro ao excluir o video");
+    console.log(error)
+  }
+}
+
+// Editar informações do vídeo
 async function editarVideo() {
   try {
     await $fetch(`/api/v1/videos/${route.params.id}`, {
