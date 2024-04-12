@@ -57,15 +57,13 @@ import type { Video } from '@/interfaces/video.interface';
 import { Inbox, Eye, Plus } from 'lucide-vue-next';
 
 const { $toast } = useNuxtApp();
-
-const { data: videos, error } = await useFetch("/api/v1/videos");
-
-if (error.value) {
-  $toast.error("Erro ao carregar os videos");
-}
-
+// LocalStorage e Estados reativos
 const { adicionarFavorito, getFavoritos } = useVideoStore();
 const videosFavoritos = ref<Video[]>([]);
+
+// API - Buscar os videos 
+// renomei meu data para videos //
+const { data: videos, error } = await useFetch("/api/v1/videos");
 
 
 const addFavorito = (video: Video) => {
@@ -74,6 +72,10 @@ const addFavorito = (video: Video) => {
 }
 
 onMounted(async () => {
+  if(error.value) {
+    $toast.error(error.value.statusMessage || "");
+  }
+
   videosFavoritos.value = await getFavoritos;
 })
 </script>

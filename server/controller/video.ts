@@ -7,6 +7,11 @@ const { client } = postgresClient();
 
 // GET
 export const buscaVideos = async () => {
+  // FORÇAR UM ERRO SÓ DESCOMENTAR ESSA LINHA
+  // throw createError({
+  //   statusCode: 500,
+  //   statusMessage: 'Erro ao buscar os videos',
+  // })
   const resultado = await client.query('SELECT * FROM videos')
   
   return resultado.rows as Video[];  

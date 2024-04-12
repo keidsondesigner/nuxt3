@@ -44,15 +44,14 @@
 
 <script setup lang="ts">
 import { ChevronLeft, X } from 'lucide-vue-next';
-import type { Video } from '~/interfaces/video.interface';
 
 const videoStore = useVideoStore();
 const { favoritos } = storeToRefs(videoStore);
 
-const { $toast }  = useNuxtApp();
+const { $toast }  = useNuxtApp(); 
 
 const removeFavorito = (id: number, descricao: string) => {
   videoStore.deletarFavorito(id);
-  $toast.error(`${descricao} - foi removido!`);
+  $toast.success(`${descricao} - foi removido!`);
 }
 </script>

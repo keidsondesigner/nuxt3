@@ -127,10 +127,13 @@ const { $toast } = useNuxtApp();
 const { adicionarFavorito } = useVideoStore();
 
 // API - Buscar o video por id
-const { data: video, error } = await useFetch(`/api/v1/videos/${route.params.id}`);
-if(error.value) {
-  console.log(error.value)
-  $toast.error("Erro ao carregar o vídeo");
+// renomei meu data para video //
+const { data: video } = await useFetch(`/api/v1/videos/${route.params.id}`);
+if(!video.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Video não encontrado",
+  })
 }
 
 // Estados reativos
