@@ -36,27 +36,11 @@
     <nav class="">
       <NuxtLink
         class="hover:text-green-400 border-r-2 border-slate-400/25 pr-2 pl-2"
-        to="/"
+        v-for="route in routes()"
+        :key="route.name"
+        :to="route.path"
       >
-        Home
-      </NuxtLink>
-      <NuxtLink
-        class="hover:text-green-400 border-r-2 border-slate-400/25 pr-2 pl-2"
-        to="/videos"
-      >
-        Vídeos
-      </NuxtLink>
-      <NuxtLink
-        class="hover:text-green-400 border-r-2 border-slate-400/25 pr-2 pl-2"
-        to="/videos/favoritos"
-      >
-        Favoritos
-      </NuxtLink>
-      <NuxtLink
-        class="hover:text-green-400 pr-2 pl-2"
-        to="/videos/adicionar"
-      >
-        Adicionar
+        {{ route.name }}
       </NuxtLink>
     </nav>
     <!-- Search Bar and Language Selection -->
@@ -79,5 +63,6 @@
     </div>
   </header>
 </template>
-<script setup lang="ts"></script>
-<style scoped></style>
+<script setup lang="ts">
+</script>
+
