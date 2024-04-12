@@ -1,4 +1,5 @@
 <template>
+<Dialog>
   <!-- <div>
     video por id: {{ idParams }}
   </div> -->
@@ -16,22 +17,23 @@
           <Plus />
         </Button>
         <Button
-          class="gap-2 mr-4"
-          variant="destructive"
-          @click="editarFavorito(video)"
+        class="gap-2 mr-4"
+        variant="destructive"
+        @click="editarFavorito(video)"
         >
-          Editar
+          Excluír
           <SquarePen />
         </Button>
-        <NuxtLink to="/videos">
+        <DialogTrigger as-child>
           <Button
-            class="gap-2"
+            class="gap-2 mr-4"
             variant="secondary"
+            @click="editarFavorito(video)"
           >
-            Voltar
-            <ChevronLeft />
+            Editar
+            <SquarePen />
           </Button>
-        </NuxtLink>
+        </DialogTrigger>
       </div>
     </div>
   </div>
@@ -49,10 +51,51 @@
         allowfullscreen
       />
   </section>
+  <DialogContent class="max-w-[360px] sm:max-w-[425px] md:max-w-[640px]">
+    <DialogHeader>
+      <DialogTitle>Editar video</DialogTitle>
+      <DialogDescription>
+        Para salvar alterações, basta clicar no botão confirmar.
+      </DialogDescription>
+    </DialogHeader>
+    <div class="grid gap-4 py-4">
+      <div class="grid grid-cols-4 items-center gap-4">
+        <Label for="name" class="text-right">
+          Descrição
+        </Label>
+        <Input type="text" id="name" value="Pedro Duarte" class="col-span-3" />
+      </div>
+      <div class="grid grid-cols-4 items-center gap-4">
+        <Label for="username" class="text-right">
+          Url
+        </Label>
+        <Input type="text" id="username" value="@peduarte" class="col-span-3" />
+      </div>
+    </div>
+    <DialogFooter>
+      <Button type="submit">
+        Confirmar
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
 </template>
 
 <script setup lang="ts">
-import { ChevronLeft, Plus, SquarePen } from 'lucide-vue-next';
+import { Plus, SquarePen } from 'lucide-vue-next';
+import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
 import type { Video } from '~/interfaces/video.interface';
 
 // define o estilo de layout, que vai ser mostrado nesta página;
@@ -73,7 +116,6 @@ if(error.value) {
   $toast.error("Erro ao carregar o vídeo");
 }
 
-const { adicionarFavorito } = useVideoStore();
 
 function addFavorito(video: Video) {
   console.log(video)
