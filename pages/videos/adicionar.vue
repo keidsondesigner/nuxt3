@@ -97,7 +97,7 @@ const onSubmit = form.handleSubmit(async (values) => {
 
     setTimeout(() => {
       router.push("/videos");
-    }, 2000)
+    }, 500)
   } catch (error) {
     $toast.error("Erro ao salvar o vídeo");
     throw createError({
