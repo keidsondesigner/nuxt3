@@ -1,6 +1,6 @@
 import pg from "pg";
 
-// Ambiente de desenvolvimento
+// Ambiente de desenvolvimento Docker
 // export const postgresClient = () => {
 //   const client = new pg.Pool({
 //     host: process.env.POSTGRES_HOST,
@@ -18,7 +18,7 @@ import pg from "pg";
 // Ambiente de produção
 export const postgresClient = () => {
   const client = new pg.Pool({
-    connectionString: process.env.POSTGRES_URL ,
+    connectionString: process.env.POSTGRES_URL,
   });
 
   return {
