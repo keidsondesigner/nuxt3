@@ -6,7 +6,7 @@ router.get('/videos', defineEventHandler(videoController.buscaVideos));
 
 router.get('/videos/:id', defineEventHandler(videoController.buscaVideoPorId));
 
-router.get('/videos/busca', defineEventHandler(videoController.buscaVideosPorDescricao));
+router.get('/videos/busca', defineEventHandler(videoController.buscaVideoPorDescricao));
 
 router.post('/videos', defineEventHandler(videoController.adicionaVideo));
 
