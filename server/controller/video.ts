@@ -2,10 +2,9 @@ import { Video } from "@/interfaces/video.interface"
 import { postgresClient } from "../utils"
 import { H3Event, createError } from "h3";
 
-
 const { client } = postgresClient();
 
-// GET
+// GET buscaTodosVideos
 export const buscaVideos = async () => {
   // FORÇAR UM ERRO SÓ DESCOMENTAR ESSA LINHA
   // throw createError({
@@ -17,6 +16,7 @@ export const buscaVideos = async () => {
   return resultado.rows as Video[];  
 }
 
+// GET buscaVideoPorId
 export const buscaVideoPorId = async (event: H3Event) => {
   const resquestId = (await event.context.params?.id) as string
   const resultado = await client.query(
@@ -26,7 +26,25 @@ export const buscaVideoPorId = async (event: H3Event) => {
   return resultado.rows[0] as Video;  
 }
 
-// POST
+// GET buscaVideoPorDescriçao
+export const buscaVideoPorDescricao = async (event: H3Event) => {
+  try {
+    const textoDescricao = await getQuery(event).descricao;
+  
+    const minhaQuery = await `SELECT * FROM videos WHERE descricao ILIKE '%${textoDescricao}%'`;
+    const resultado = await client.query(`${minhaQuery}`);
+  
+    return resultado.rows.length ? resultado.rows as Video[] : 'nenhum video encontrado';
+    
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      name: 'Erro ao tentar fazer busca, por descrição do video.',
+    })
+  }
+};
+
+// POST adicionaVideo
 export const adicionaVideo = async (event: H3Event) => {
   try {
     const body = await readBody(event)
@@ -44,8 +62,7 @@ export const adicionaVideo = async (event: H3Event) => {
   }
 }
 
-// PUT
-
+// PUT atualizaVideo
 export const atualizaVideo = async (event: H3Event) => {
   try {
     const body = await readBody(event)
@@ -64,8 +81,7 @@ export const atualizaVideo = async (event: H3Event) => {
   }
 }
 
-// DELETE
-
+// DELETE deletaVideo
 export const deletarVideo = async (event: H3Event) => {
   try {
     const resquestId = (await event.context.params?.id) as string
