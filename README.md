@@ -1,4 +1,6 @@
-# Nuxt 3 Minimal Starter
+<a href="https://imgur.com/igYmneS"><img src="https://imgur.com/igYmneS.png" title="source: imgur.com" /></a>
+
+# Nuxt 3 as Backend Server API 
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
