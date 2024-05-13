@@ -62,7 +62,7 @@ import { Inbox, Eye, Plus } from "lucide-vue-next";
 
 const { $toast } = useNuxtApp();
 // LocalStorage e Estados reativos
-const { adicionarFavorito, getFavoritos } = useVideoStore();
+const { adicionarFavorito, favoritos } = useVideoStore();
 const videosFavoritos = ref<Video[]>([]);
 
 // API - Buscar os videos
@@ -79,7 +79,7 @@ onMounted(async () => {
     $toast.error(error.value.statusMessage || "");
   }
 
-  videosFavoritos.value = await getFavoritos;
+  videosFavoritos.value = favoritos;
 });
 </script>
 <style scoped>
